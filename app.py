@@ -32,7 +32,6 @@ def ReceivedMessage():
 
         text = util.GetTextUser(message)
         GenerateMessage(text, number)
-        print (message)
 
         return "EVENT_RECEIVED" #Si no se devuelve este mensaje, las APIS de WA, pensarán que aún no he recibido el mensaje, Se hace un bucle
     except:

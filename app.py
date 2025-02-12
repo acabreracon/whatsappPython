@@ -26,7 +26,9 @@ def ReceivedMessage():
 
     try:
         body = request.get_json()
-        value = body["value"]
+        entry = body["entry"][0]
+        changes = entry["changes"][0]
+        value = changes["value"]
         message = (value["messages"])[0]
         number = message["from"]
 
@@ -39,6 +41,7 @@ def ReceivedMessage():
  
 def GenerateMessage(text, number):
 
+    text = text.lower()
     if "text" in text:
         data = util.TextMessage("Text", number)
     

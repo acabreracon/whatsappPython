@@ -26,14 +26,13 @@ def ReceivedMessage():
 
     try:
         body = request.get_json()
-        entry = (body["entry"])[0]
-        changes = (entry["changes"])[0]
-        value = changes["value"]
+        value = body["value"]
         message = (value["messages"])[0]
         number = message["from"]
 
         text = util.GetTextUser(message)
         GenerateMessage(text, number)
+        print (message)
 
         return "EVENT_RECEIVED" #Si no se devuelve este mensaje, las APIS de WA, pensarán que aún no he recibido el mensaje, Se hace un bucle
     except:

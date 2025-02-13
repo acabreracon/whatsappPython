@@ -26,50 +26,62 @@ def ReceivedMessage():
 
     try:
         body = request.get_json()
-        entry = body["entry"][0]
-        changes = entry["changes"][0]
+        entry = (body["entry"])[0]
+        changes = (entry["changes"])[0]
         value = changes["value"]
         message = (value["messages"])[0]
         number = message["from"]
 
         text = util.GetTextUser(message)
-        GenerateMessage(text, number)
+        ProccessMessage(text, number)
 
         return "EVENT_RECEIVED" #Si no se devuelve este mensaje, las APIS de WA, pensarán que aún no he recibido el mensaje, Se hace un bucle
     except:
         return "EVENT_RECEIVED"
- 
-def GenerateMessage(text, number):
-
+    
+def ProccessMessage(text, number):
     text = text.lower()
-    if "text" in text:
-        data = util.TextMessage("Text", number)
     
-    if"format" in text:
-        data = util.TextFormatMessage(number)
+    if "hi" in text:
+        data = util.TextMessage("Hello, how i can help you", number)
+    elif "thanks" in text:
+        data = util.TextMessage("Thank you for contacting me", number)
+    else:
+        data = util.TextMessage("Sorry, i can't understand you", number)
     
-    if "image" in text:
-        data = util.ImageMessage(number)
-    
-    if "video" in text:
-        data = util.VideoMessage(number)
-
-    if "audio" in text:
-        data = util.AudioMessage(number)
-
-    if "document" in text:
-        data = util.DocumentMessage(number)
-
-    if "location" in text:
-        data = util.LocationMessage(number)
-
-    if "buttons" in text:
-        data = util.ButtonsMessage(number)
-
-    if "list" in text:
-        data = util.ListMessage(number)
-
     whatsappservice.SendMessageWhatsapp(data)
+
+# def GenerateMessage(text, number):
+
+#     text = text.lower()
+#     if "text" in text:
+#         data = util.TextMessage("Text", number)
+    
+#     if "format" in text:
+#         data = util.TextFormatMessage(number)
+    
+#     if "image" in text:
+#         data = util.ImageMessage(number)
+    
+#     if "video" in text:
+#         data = util.VideoMessage(number)
+
+#     if "audio" in text:
+#         data = util.AudioMessage(number)
+
+#     if "document" in text:
+#         data = util.DocumentMessage(number)
+
+#     if "location" in text:
+#         data = util.LocationMessage(number)
+
+#     if "buttons" in text:
+#         data = util.ButtonsMessage(number)
+
+#     if "list" in text:
+#         data = util.ListMessage(number)
+
+#     whatsappservice.SendMessageWhatsapp(data)
 
 
 if (__name__ == "__main__"):

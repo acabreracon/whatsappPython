@@ -32,6 +32,8 @@ def ReceivedMessage():
         message = (value["messages"])[0]
         number = message["from"]
 
+        print(body)
+
         text = util.GetTextUser(message)
         ProccessMessage(text, number)
 
@@ -51,37 +53,37 @@ def ProccessMessage(text, number):
     
     whatsappservice.SendMessageWhatsapp(data)
 
-# def GenerateMessage(text, number):
+def GenerateMessage(text, number):
 
-#     text = text.lower()
-#     if "text" in text:
-#         data = util.TextMessage("Text", number)
+    text = text.lower()
+    if "text" in text:
+        data = util.TextMessage("Text", number)
     
-#     if "format" in text:
-#         data = util.TextFormatMessage(number)
+    if "format" in text:
+        data = util.TextFormatMessage(number)
     
-#     if "image" in text:
-#         data = util.ImageMessage(number)
+    if "image" in text:
+        data = util.ImageMessage(number)
     
-#     if "video" in text:
-#         data = util.VideoMessage(number)
+    if "video" in text:
+        data = util.VideoMessage(number)
 
-#     if "audio" in text:
-#         data = util.AudioMessage(number)
+    if "audio" in text:
+        data = util.AudioMessage(number)
 
-#     if "document" in text:
-#         data = util.DocumentMessage(number)
+    if "document" in text:
+        data = util.DocumentMessage(number)
 
-#     if "location" in text:
-#         data = util.LocationMessage(number)
+    if "location" in text:
+        data = util.LocationMessage(number)
 
-#     if "buttons" in text:
-#         data = util.ButtonsMessage(number)
+    if "buttons" in text:
+        data = util.ButtonsMessage(number)
 
-#     if "list" in text:
-#         data = util.ListMessage(number)
+    if "list" in text:
+        data = util.ListMessage(number)
 
-#     whatsappservice.SendMessageWhatsapp(data)
+    whatsappservice.SendMessageWhatsapp(data)
 
 
 if (__name__ == "__main__"):

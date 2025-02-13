@@ -56,14 +56,25 @@ def ProccessMessage(text, number):
 
     elif "thanks" in text:
         data = util.TextMessage("Thank you for contacting me", number)
+
     elif "agency" in text:
         data = util.TextMessage("This is our agency", number)
         dataLocation = util.LocationMessage(number)
         listData.append(data)
         listData.append(dataLocation)
+
     elif "contact" in text:
         data = util.TextMessage("*Contact center:*\n9983467026", number)
         listData.append(data)
+
+    elif "buy" in text:
+        data = util.ButtonsMessage(number)
+        listData.append(data)
+
+    elif "sell" in text:
+        data = util.ButtonsMessage(number)
+        listData.append(data)
+        
     else:
         data = util.TextMessage("Sorry, i can't understand you", number)
     

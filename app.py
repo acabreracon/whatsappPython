@@ -1,6 +1,7 @@
 from flask import Flask, request
 import util
 import whatsappservice
+import re
 
 app = Flask(__name__)
 @app.route('/welcome', methods=['GET'])
@@ -32,7 +33,8 @@ def ReceivedMessage():
         message = (value["messages"])[0]
         number = message["from"]
 
-        print(body)
+        number = LimpiarNumero(number)
+        print(number)
 
         text = util.GetTextUser(message)
         ProccessMessage(text, number)
@@ -84,6 +86,9 @@ def GenerateMessage(text, number):
         data = util.ListMessage(number)
 
     whatsappservice.SendMessageWhatsapp(data)
+
+def LimpiarNumero(numero):
+    return re.sub(r"^521(\d{10})$", r"52\1", numero)
 
 
 if (__name__ == "__main__"):

@@ -1,6 +1,10 @@
 from google import genai
+import os
+from dotenv import load_dotenv
 
-client = genai.Client(api_key="AIzaSyCrulqkz40W9JLpowAP2xC-yXqu6fg5zT8")
+load_dotenv()
+
+client = genai.Client(api_key= os.getenv("GEMINI_API_KEY"))
 
 def GetResponse(text):
     try:

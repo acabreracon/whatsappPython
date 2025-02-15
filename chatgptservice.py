@@ -1,6 +1,10 @@
 import openai
+import os
+from dotenv import load_dotenv
 
-client = openai.Client(api_key = "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")
+load_dotenv()
+
+client = openai.Client(api_key = os.getenv("OPENAI_API_KEY"))
 
 def GetResponse(text):
     try:

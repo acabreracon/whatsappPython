@@ -77,6 +77,7 @@ def ProccessMessage(text, number):
         
     else:
         data = util.TextMessage("Sorry, i can't understand you", number)
+        listData.append(data)
     
     for item in listData:
         whatsappservice.SendMessageWhatsapp(item)

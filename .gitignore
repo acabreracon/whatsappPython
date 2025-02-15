@@ -1,3 +1,19 @@
+# Ignorar variables de entorno
+.env
+
+# Ignorar dependencias de Python
 __pycache__/
 *.pyc
 *.pyo
+
+# Ignorar archivos de configuración de entornos virtuales
+venv/
+.env/
+
+# Ignorar archivos de logs y bases de datos locales
+*.log
+*.sqlite3
+
+# Ignorar cachés de IDEs
+.vscode/
+.idea/

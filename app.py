@@ -75,11 +75,11 @@ def ProccessMessage(text, number):
         data = util.ButtonsMessage(number)
         listData.append(data)
     
-    elif "sign up" in text:
+    elif "sign up" in text or "signup" in text:
         data = util.TextMessage("Enter this link to sign up: https://google.com.mx", number)
         listData.append(data)
     
-    elif "login" in text:
+    elif "login" in text or "log in" in text:
         data = util.TextMessage("Enter this link to sign up: https://google.com.mx", number)
         listData.append(data)
         

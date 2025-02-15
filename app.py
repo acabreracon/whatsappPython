@@ -2,7 +2,6 @@ from flask import Flask, request
 import util
 import whatsappservice
 import re
-import chatgptservice
 import geminigpt
 
 app = Flask(__name__)

@@ -2,6 +2,8 @@ from flask import Flask, request
 import util
 import whatsappservice
 import re
+import chatgptservice
+import geminigpt
 
 app = Flask(__name__)
 @app.route('/welcome', methods=['GET'])
@@ -34,10 +36,17 @@ def ReceivedMessage():
         number = message["from"]
 
         number = LimpiarNumero(number)
-        print(number)
 
         text = util.GetTextUser(message)
-        ProccessMessage(text, number)
+        responseGPT = geminigpt.GetResponse(text)#chatgptservice.GetResponse(text)
+
+        if responseGPT != "error":
+            data = util.TextMessage(responseGPT, number)
+        else:
+            data = util.TextMessage("Lo siento, ocurrio un problema", number)
+
+        whatsappservice.SendMessageWhatsapp(data)
+        #ProccessMessage(text, number)
 
         return "EVENT_RECEIVED" #Si no se devuelve este mensaje, las APIS de WA, pensarán que aún no he recibido el mensaje, Se hace un bucle
     except:
@@ -84,8 +93,9 @@ def ProccessMessage(text, number):
         listData.append(data)
         
     else:
-        data = util.TextMessage("Sorry, i can't understand you", number)
+        data = util.TextMessage("Sorry, i can't understand you, but this is our menu", number)
         listData.append(data)
+        dataMenu = util.ListMessage(number)
     
     for item in listData:
         whatsappservice.SendMessageWhatsapp(item)

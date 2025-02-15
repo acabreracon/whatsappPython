@@ -122,14 +122,14 @@ def ButtonsMessage(number):
                                 "type": "reply",
                                 "reply": {
                                     "id": "001",
-                                    "title": "iniciar sesión 😁"
+                                    "title": "login 😁"
                                 }
                             },
                             {
                                 "type": "reply",
                                 "reply": {
                                     "id": "002",
-                                    "title": "Registrarse"
+                                    "title": "sign up"
                                 }
                             }
                         ]

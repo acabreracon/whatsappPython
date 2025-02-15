@@ -4,13 +4,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = genai.Client(api_key= os.getenv("GEMINI_API_KEY"))
+client = genai.Client(api_key= "AIzaSyCrulqkz40W9JLpowAP2xC-yXqu6fg5zT8")#os.getenv("GEMINI_API_KEY")
 
 def GetResponse(text):
     try:
         response = client.models.generate_content(
             model="gemini-2.0-flash",
-            contents=text,
+            contents=[text],
         )
         return response.text
 

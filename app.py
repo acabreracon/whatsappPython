@@ -3,6 +3,7 @@ import util
 import whatsappservice
 import re
 import geminigpt
+import asistenteVirtualRAG
 
 app = Flask(__name__)
 @app.route('/welcome', methods=['GET'])
@@ -37,10 +38,11 @@ def ReceivedMessage():
         number = LimpiarNumero(number)
 
         text = util.GetTextUser(message)
-        responseGPT = geminigpt.GetResponse(text)#chatgptservice.GetResponse(text)
+        #responseGPT = geminigpt.GetResponse(text)#chatgptservice.GetResponse(text)
+        reponseGPT = asistenteVirtualRAG.asistenteVirtualRag(text)
 
-        if responseGPT != "error":
-            data = util.TextMessage(responseGPT, number)
+        if reponseGPT != "error":
+            data = util.TextMessage(reponseGPT, number)
         else:
             data = util.TextMessage("Lo siento, ocurrio un problema", number)
 

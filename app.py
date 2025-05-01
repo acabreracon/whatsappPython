@@ -38,11 +38,11 @@ def ReceivedMessage():
         number = LimpiarNumero(number)
 
         text = util.GetTextUser(message)
-        #responseGPT = geminigpt.GetResponse(text)#chatgptservice.GetResponse(text)
-        reponseGPT = asistenteVirtualRAG.asistenteVirtualRag(text)
+        responseGPT = geminigpt.GetResponse(text)#chatgptservice.GetResponse(text)
+        #responseGPT = asistenteVirtualRAG.asistenteVirtualRag(text)
 
-        if reponseGPT != "error":
-            data = util.TextMessage(reponseGPT, number)
+        if responseGPT != "error":
+            data = util.TextMessage(responseGPT, number)
         else:
             data = util.TextMessage("Lo siento, ocurrio un problema", number)
 

@@ -3,7 +3,7 @@ import util
 import whatsappservice
 import re
 import geminigpt
-import asistenteVirtualRAG
+#import asistenteVirtualRAG
 
 app = Flask(__name__)
 @app.route('/welcome', methods=['GET'])

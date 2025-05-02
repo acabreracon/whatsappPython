@@ -44,7 +44,7 @@ def ReceivedMessage():
         if responseGPT != "error":
             data = util.TextMessage(responseGPT, number)
         else:
-            data = util.TextMessage("Lo siento, ocurrio un problema", number)
+            data = util.TextMessage("Lo siento, ocurrió un problema", number)
 
         whatsappservice.SendMessageWhatsapp(data)
         #ProccessMessage(text, number)

@@ -38,7 +38,7 @@ def ReceivedMessage():
         number = LimpiarNumero(number)
 
         text = util.GetTextUser(message)
-        #responseGPT = geminigpt.GetResponse(text)#chatgptservice.GetResponse(text)
+        
         responseGPT = asistenteVirtualRAG.asistenteVirtualRag(text)
 
         if responseGPT != "error":

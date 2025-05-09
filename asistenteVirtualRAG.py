@@ -44,7 +44,7 @@ def asistenteVirtualRag(text):
         vectorstore = Chroma.from_documents(
             documents = documents,
             embedding = embeddings, 
-            persist_directory="./chroma_menu_db"
+            persist_directory="./chroma_chatbot_db"
         )
 
         print("Base de datos vectorial creada exitosamente.")
@@ -71,16 +71,11 @@ def asistenteVirtualRag(text):
 
         output_parser = StrOutputParser()
         chain = retrieve | chat_prompt | llm | output_parser
-
-        # query = "¿Qué incluye el paquete de explorando Groelandia?"
-        # response = chain.invoke({"question": query})
-        # print(response)
-
-        # query = "¿Qué paquetes turístico ofrece la empresa?"
-        # response = chain.invoke({"question": query})
-        # print(response)
+        
         query = text
+        print(f"Consulta: {query}")  # Print the query being sent to the model
         response = chain.invoke({"question": query})
+        print(f"Respuesta: {response}")  # Print the response from the model
         return response
     except Exception as exception:
         print(exception)

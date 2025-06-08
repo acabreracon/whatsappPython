@@ -19,7 +19,7 @@ def asistenteVirtualRag(text):
         pdf_text  = [text for text in pdf_text if text]
         full_text = "\n\n".join(pdf_text)
 
-        print(full_text[:1000])  # Print the first 1000 characters of the PDF text
+        #print(full_text[:1000])  # Print the first 1000 characters of the PDF text
 
         splitter = RecursiveCharacterTextSplitter(
             chunk_size=500,  # Number of characters per chunk
@@ -27,7 +27,7 @@ def asistenteVirtualRag(text):
             separators=["\n\n", "\n", ". ", " ", ""],  # Function to calculate the length of a chunk
         )
         chunks = splitter.split_text(full_text)
-        print(f"Total de fragmentos: {len(chunks)}")  # Print the number of chunks created
+        #print(f"Total de fragmentos: {len(chunks)}")  # Print the number of chunks created
 
         if "GOOGLE_API_KEY" not in os.environ:
             os.environ["GOOGLE_API_KEY"] = "AIzaSyCvXozHylyHSEFYAW-SZ1QXLyQeKJnt-ac"#getpass.getpass("Total de fragmentos")
@@ -39,7 +39,7 @@ def asistenteVirtualRag(text):
         embedded_chunks = [embeddings.embed_query(chunk) for chunk in chunks]
         #embedded_chunks = [embeddings.embed_query([chunk])[0] for chunk in chunks]
 
-        print(f"Ejemplo de embedding: {embedded_chunks[0][:5]}")  # Print the number of embedded chunks
+       # print(f"Ejemplo de embedding: {embedded_chunks[0][:5]}")  # Print the number of embedded chunks
 
         documents = [Document(page_content=chunk) for chunk in chunks]
         vectorstore = Chroma.from_documents(
@@ -48,7 +48,7 @@ def asistenteVirtualRag(text):
             persist_directory="./chroma_chatbot_db"
         )
 
-        print("Base de datos vectorial creada exitosamente.")
+        #print("Base de datos vectorial creada exitosamente.")
 
         retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
         retrieve = RunnableMap({
@@ -74,10 +74,10 @@ def asistenteVirtualRag(text):
         chain = retrieve | chat_prompt | llm | output_parser
         
         query = text
-        print(f"Consulta: {query}")  # Print the query being sent to the model
+        #print(f"Consulta: {query}")  # Print the query being sent to the model
         response = chain.invoke({"question": query})
-        print(f"Respuesta: {response}")  # Print the response from the model
+        #print(f"Respuesta: {response}")  # Print the response from the model
         return response
     except Exception as exception:
-        print(exception)
+        #print(exception)
         return "error"

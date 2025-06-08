@@ -1,6 +1,7 @@
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain_core.prompts import PromptTemplate
 from langchain_core.documents import Document
@@ -29,7 +30,7 @@ def asistenteVirtualRag(text):
         print(f"Total de fragmentos: {len(chunks)}")  # Print the number of chunks created
 
         if "GOOGLE_API_KEY" not in os.environ:
-            os.environ["GOOGLE_API_KEY"] = "AIzaSyCrulqkz40W9JLpowAP2xC-yXqu6fg5zT8"#getpass.getpass("Total de fragmentos")
+            os.environ["GOOGLE_API_KEY"] = "AIzaSyCvXozHylyHSEFYAW-SZ1QXLyQeKJnt-ac"#getpass.getpass("Total de fragmentos")
 
         checkpoint = "gemini-2.0-flash"
         llm = ChatGoogleGenerativeAI(model=checkpoint)
@@ -57,7 +58,7 @@ def asistenteVirtualRag(text):
 
         #Definir el Prompt en Español
         prompt_template = """Utiliza el siguiente contexto para responder la pregunta.\n
-        Si no sabes la respuesta, simplemente di que no lo sabes.\n\n
+        Si no sabes la respuesta, simplemente di me el error.\n\n
         {context}\n\n
 
         Pregunta: {question}\nRespuesta:"""

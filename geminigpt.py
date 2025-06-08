@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = genai.Client(api_key= "AIzaSyCrulqkz40W9JLpowAP2xC-yXqu6fg5zT8")#os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key= "AIzaSyCvXozHylyHSEFYAW-SZ1QXLyQeKJnt-ac")#os.getenv("GEMINI_API_KEY")
 
 def GetResponse(text):
     try:
